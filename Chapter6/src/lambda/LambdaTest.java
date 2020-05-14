@@ -25,7 +25,7 @@ public class LambdaTest {
 		System.out.println(Arrays.toString(planets));
 
 
-		repeat(10,i-> System.out.println("Countdown:"+(9-i)));
+		repeat(10, i -> System.out.println("Countdown:" + (9 - i)));
 
 
 		//  keep program running until user selects "OK"
@@ -33,7 +33,7 @@ public class LambdaTest {
 		System.exit(0);
 	}
 
-	public static void repeat(int n, IntConsumer action){
+	public static void repeat(int n, IntConsumer action) {
 		for (int i = 0; i < n; i++) {
 			action.accept(i);
 		}
