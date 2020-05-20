@@ -1,6 +1,7 @@
 package pair2;
 
 import java.time.LocalDate;
+import java.util.function.IntFunction;
 
 /**
  * @Author: zhanghan
@@ -17,16 +18,21 @@ public class PairTest2 {
 				LocalDate.of(1903, 12, 3),
 				LocalDate.of(1910, 6, 22),
 		};
-		Pair<LocalDate> mm = ArrayAlg.minmax(birthdays);
-		System.out.println("min = " + mm.getFirst());
-		System.out.println("max= " + mm.getSecond());
+//		Pair<LocalDate> mm = ArrayAlg.minmax(birthdays);
+//		System.out.println("min = " + mm.getFirst());
+//		System.out.println("max= " + mm.getSecond());
+
+		String[] names = ArrayAlg.minmax(String[]::new, "Tom", "Dick", "Harry");
+
 	}
 
 }
 
 class ArrayAlg {
 
-	public static <T extends Comparable> Pair<T> minmax(T[] a) {
+	public static <T extends Comparable> T[] minmax(IntFunction<T[]> constr, T... a) {
+
+		T[] result = constr.apply(2);
 		if (a == null || a.length == 0) {
 			return null;
 		}
@@ -40,7 +46,9 @@ class ArrayAlg {
 				max = a[i];
 			}
 		}
-		return new Pair<>(min, max);
+		return (T[]) result;
 	}
+
+
 
 }
