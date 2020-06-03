@@ -31,7 +31,5 @@ public class MapTest {
 		// iterate through all entries
 		staff.forEach((k,v)-> System.out.println("key="+k+", value="+v));
 
-
-
 	}
 }

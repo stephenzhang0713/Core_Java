@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap
+        PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+    <typeAlias alias="User" type="ibatis.model.User"/>
+    <typeAlias alias="parameterMap" type="ibatis.util.ParameterMap"/>
+
+    <select id="getAllUsers" resultClass="java.util.HashMap">
+        select *
+        from users;
+    </select>
+
+    <select id="getUserByName" parameterClass="java.lang.String" resultClass="java.util.HashMap">
+        select *
+        from users
+        where USERNAME = #VARCHAR#;
+    </select>
+
+    <select id="getUserByRealNameAndMobile" parameterClass="parameterMap" resultClass="java.util.HashMap">
+        select *
+        from users
+        where USERNAME = #userName:VARCHAR# and MOBILE=#mobile:VARCHAR#
+    </select>
+
+    <insert id="addUser" parameterClass="parameterMap">
+        insert into users(USERNAME, PASSWORD, MOBILE, EMAIL)
+        values (#userName:VARCHAR#, #password:VARCHAR#, #mobile:VARCHAR#, #email:VARCHAR#)
+    </insert>
+
+    <update id="updateUser">
+        update users
+        set PASSWORD='123456'
+    </update>
+
+    <delete id="deleteUser" parameterClass="java.lang.Integer">
+        delete
+        from users
+        where ID = #INT#
+    </delete>
+
+</sqlMap>
