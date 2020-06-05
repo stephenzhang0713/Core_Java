@@ -2,7 +2,7 @@
 <!DOCTYPE sqlMap
         PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
         "http://ibatis.apache.org/dtd/sql-map-2.dtd">
-<sqlMap>
+<sqlMap namespace="User">
     <typeAlias alias="User" type="ibatis.model.User"/>
     <typeAlias alias="parameterMap" type="ibatis.util.ParameterMap"/>
 
@@ -11,10 +11,10 @@
         from users;
     </select>
 
-    <select id="getUserByName" parameterClass="java.lang.String" resultClass="java.util.HashMap">
+    <select id="getUserByName" parameterClass="java.lang.String" resultClass="User">
         select *
         from users
-        where USERNAME = #VARCHAR#;
+        where USERNAME = #VARCHAR#
     </select>
 
     <select id="getUserByRealNameAndMobile" parameterClass="parameterMap" resultClass="java.util.HashMap">

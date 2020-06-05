@@ -13,6 +13,19 @@ public class User implements java.io.Serializable {
 	private String mobile;
 	private String email;
 
+	public User() {
+		super();
+	}
+
+	public User(Integer userId, String userName, String password, String mobile, String email) {
+		super();
+		this.userId = userId;
+		this.userName = userName;
+		this.password = password;
+		this.mobile = mobile;
+		this.email = email;
+	}
+
 	public Integer getUserId() {
 		return userId;
 	}

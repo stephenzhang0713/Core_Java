@@ -4,6 +4,7 @@
         "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
 <sqlMapConfig>
     <properties resource="jdbc.properties" />
+    <settings useStatementNamespaces="true"/>
     <transactionManager type="JDBC">
         <dataSource type="SIMPLE">
             <property name="JDBC.Driver" value="${jdbc.driverClassName}" />

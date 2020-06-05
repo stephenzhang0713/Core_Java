@@ -3,7 +3,7 @@ package ibatis;
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
-import ibatis.util.ParameterMap;
+import ibatis.model.User;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -53,19 +53,27 @@ public class IBatisDemo {
 	}
 
 	public static int delete(int userId) throws SQLException {
-		return sqlMap.delete("deleteUser",userId);
+		return sqlMap.delete("deleteUser", userId);
 	}
 
 	public static void main(String[] args) throws SQLException {
-		ParameterMap parameterMap1 = new ParameterMap("userName", "admin", "mobile", "18932322333");
-		System.out.println(select(parameterMap1));
+//		ParameterMap parameterMap1 = new ParameterMap("userName", "admin", "mobile", "18932322333");
+//		System.out.println(select(parameterMap1));
+//
+//
+//		ParameterMap parameterMap2 = new ParameterMap("userName", "sarin", "password", "123", "mobile", "1", "email", "@");
+//		System.out.println(insert(parameterMap2));
+//
+//		System.out.println(update());
+//
+//		System.out.println(delete(5));
 
-
-		ParameterMap parameterMap2 = new ParameterMap("userName", "sarin", "password", "123", "mobile", "1", "email", "@");
-		System.out.println(insert(parameterMap2));
-
-		System.out.println(update());
-
-		System.out.println(delete(5));
+		User user = new User(null, null, null, null, null);
+		user = (User) sqlMap.queryForObject("User.getUserByName", "admin", user);
+		Map map = sqlMap.queryForMap("User.getAllUsers", null, "userId");
+		System.out.println(user);
+		System.out.println(sqlMap.queryForObject("User.getUserByName", "admin").getClass().getName());
+		System.out.println(map);
+		System.out.println(map.keySet().iterator().next().getClass());
 	}
 }
